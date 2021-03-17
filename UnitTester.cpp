@@ -4,6 +4,7 @@
 
 int main(int argc, char *argv[]) {
     Kokkos::initialize(argc, argv);
+    UnitTester::init();
 
     if(argc > 1) {
         if(strcmp(argv[1], "help") == 0) {

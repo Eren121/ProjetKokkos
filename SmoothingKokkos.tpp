@@ -1,6 +1,7 @@
 #include "UnitTester.hpp"
-#include "Smoothing.hpp"
+#include "SmoothingKokkos.hpp"
 
+/*
 /// @brief copier en profondeur une matrice OpenCV vers une vue Kokkos
 static void copyMatToView(Kokkos::View<uchar**[3], Kokkos::LayoutRight, Kokkos::HostSpace>& view, const cv::Mat& mat) {
     using namespace common_namespaces;
@@ -13,9 +14,10 @@ static void copyMatToView(Kokkos::View<uchar**[3], Kokkos::LayoutRight, Kokkos::
         }
     }
 }
+*/
 
 template<typename MemSpace, typename ExeSpace>
-cv::Mat Smoothing<MemSpace, ExeSpace>::smooth(const cv::Mat &in, int k) {
+cv::Mat SmoothingKokkos<MemSpace, ExeSpace>::smooth(const cv::Mat &in, int k) {
     using namespace common_namespaces;
 
     const int h = in.rows;

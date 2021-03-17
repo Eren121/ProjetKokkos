@@ -76,10 +76,10 @@ using Pixel = PixelBase<uchar>;
  * La définition par défault est pour OpenCV
  */
 template<class T>
-struct Storage {};
+struct Storage;
 
-template<class U>
-struct Storage<cv::Mat_<U>> {
+template<>
+struct Storage<cv::Mat> {
     using T = cv::Mat;
 
     /// Get pixel

@@ -4,6 +4,6 @@
 
 using namespace common_namespaces;
 
-TEST("Gauss-K::Compare") {
-    Performance<GaussK>::compare();
+TEST("GaussWindow-K::Compare") {
+    Performance::compare_kokkos<GaussK>();
 }

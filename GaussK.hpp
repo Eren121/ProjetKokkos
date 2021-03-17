@@ -1,17 +1,17 @@
 #ifndef GAUSSK_HPP
 #define GAUSSK_HPP
 
-#include "Smoothing.hpp"
+#include "SmoothingKokkos.hpp"
 #include "Diagonale.hpp"
 
-/// Version de Gauss-Seidel parallèle mais non-optimisée car traite les étapes les unes après les autres
+/// Version de GaussWindow-Seidel parallèle mais non-optimisée car traite les étapes les unes après les autres
 /// Parallèle mais pas dans toutes les dimensions (dimensions des pixels mais pas dimension des étapes)
 template<typename MemSpace, typename ExeSpace>
-class GaussK : public Smoothing<MemSpace, ExeSpace> {
+class GaussK : public SmoothingKokkos<MemSpace, ExeSpace> {
 public:
-    using typename Smoothing<MemSpace, ExeSpace>::Img;
+    using typename SmoothingKokkos<MemSpace, ExeSpace>::Img;
 
-    const char *name() const override { return "Gauss-Seidel-K"; }
+    const char *name() const override { return "Gauss-Seidel [K]"; }
 
     void doSmoothing(Img &out, const Img &in, int h, int w, int k) override {
 

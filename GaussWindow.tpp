@@ -1,13 +1,13 @@
-#include "Gauss.hpp"
+#include "GaussWindow.hpp"
 #include "Diagonale.hpp"
 
 template<typename MemSpace, typename ExeSpace>
-const char *Gauss<MemSpace, ExeSpace>::name() const {
-    return "Gauss-Seidel";
+const char *GaussWindow<MemSpace, ExeSpace>::name() const {
+    return "Gauss-Seidel [Window]";
 }
 
 template<typename MemSpace, typename ExeSpace>
-void Gauss<MemSpace, ExeSpace>::
+void GaussWindow<MemSpace, ExeSpace>::
 doSmoothing(Img &out, const Img &in, int h, int w, int k) {
     using namespace common_namespaces;
 
@@ -22,7 +22,7 @@ doSmoothing(Img &out, const Img &in, int h, int w, int k) {
         //               = (tf + 1) / 2
         Kokkos::parallel_for(
 
-            "Gauss-Seidel glissement de la fenêtre",
+            "GaussWindow-Seidel glissement de la fenêtre",
 
             MDRangePolicy<ExeSpace, Rank<2>>({0, 0}, {(tf + 1) / 2, nb_elements_max}),
 

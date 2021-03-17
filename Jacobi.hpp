@@ -1,13 +1,13 @@
 #ifndef JACOBI_HPP
 #define JACOBI_HPP
 
-#include "Smoothing.hpp"
+#include "SmoothingKokkos.hpp"
 
 /// @brief Algorithme de lissage de Jacobi
 template<typename MemSpace, typename ExeSpace>
-class Jacobi : public Smoothing<MemSpace, ExeSpace> {
+class Jacobi : public SmoothingKokkos<MemSpace, ExeSpace> {
 public:
-    using typename Smoothing<MemSpace, ExeSpace>::Img;
+    using typename SmoothingKokkos<MemSpace, ExeSpace>::Img;
 
     void doSmoothing(Img &out, const Img &in, int h, int w, int k) override;
 

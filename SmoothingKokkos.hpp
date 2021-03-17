@@ -5,13 +5,13 @@
 #include "Storage.hpp"
 #include <type_traits>
 
-/// @brief Classe de base pour les algorithmes de lissage Gauss-Seidel et Jacobi
+/// @brief Classe de base pour les algorithmes de lissage GaussWindow-Seidel et Jacobi
 template<typename MemSpace, typename ExeSpace>
-class Smoothing {
+class SmoothingKokkos {
 public:
     using Img = Kokkos::View<uchar**[3], Kokkos::LayoutRight, MemSpace>;
 
-    virtual ~Smoothing() = default;
+    virtual ~SmoothingKokkos() = default;
 
     cv::Mat smooth(const cv::Mat &in, int k);
 
@@ -89,6 +89,6 @@ static void updatePixel(Mat out, int i, int j) {
     updatePixel(out, out, i, j);
 }
 
-#include "Smoothing.tpp"
+#include "SmoothingKokkos.tpp"
 
 #endif

@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 
 #define ASSERT(x) { \
         const bool b = (x); cout << #x << ": " << (b ? "OK" : "ERREUR") << endl; assert(b); \
@@ -37,6 +38,14 @@ struct Test {
 class UnitTester {
 public:
     using storage_type = std::vector<Test>;
+
+    static void init() {
+        // L'ordre d'initialisation est non spécifié, comme ça oon est sûr de l'ordre
+
+        std::sort(storage().begin(), storage().end(), [](const Test& a, const Test& b) {
+            return a.name < b.name;
+        });
+    }
 
     static void run(const Test& test) {
         using namespace std;
