@@ -10,7 +10,7 @@ find_package(Kokkos REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS  "--expt-relaxed-constexpr")
 
-add_executable(KokkosTest main.cpp Storage.hpp UnitTester.cpp UnitTester.hpp config.hpp SmoothingKokkos.tpp SmoothingKokkos.hpp GaussWindow.tpp GaussWindow.hpp Diagonale.hpp TestGaussWindow.cpp Performance.hpp GaussK.hpp TestGaussK.cpp Jacobi.hpp TestJacobi.cpp
+add_executable(KokkosTest Storage.hpp UnitTester.cpp UnitTester.hpp config.hpp SmoothingKokkos.tpp SmoothingKokkos.hpp GaussWindow.tpp GaussWindow.hpp Diagonale.hpp TestGaussWindow.cpp Performance.hpp GaussK.hpp TestGaussK.cpp Jacobi.hpp TestJacobi.cpp
             serial/Gauss.cpp serial/Gauss.hpp serial/Jacobi.cpp serial/Jacobi.hpp TestSerial.cpp)
 
 target_link_libraries(KokkosTest Kokkos::kokkos)
