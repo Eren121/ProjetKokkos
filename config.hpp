@@ -7,6 +7,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 namespace common_namespaces {
     using namespace Kokkos;
@@ -16,13 +17,34 @@ namespace common_namespaces {
 
 namespace ui {
 
+
+    inline void imshow(const std::string& title, const cv::Mat& img) {
+#if !NOGUI
+        cv::imshow(title, img);
+#else
+        std::string f;
+        f += title;
+        f += ".jpeg";
+        std::replace(f.begin(), f.end(), '/', ';'); // Au cas où, car / sépérateur répertoire (et il y a des / dans les noms)
+        f = "out/" + f;
+
+        cv::imwrite(f, img);
+#endif
+    }
+
+    inline void waitKey(int i) {
+#if !NOGUI
+        cv::waitKey(0);
+#endif
+    }
+
     inline void display_results(const cv::Mat& orig, const cv::Mat& result, const std::string& title) {
         using namespace common_namespaces;
 
-        imshow("Image originale", orig);
-        imshow(title, result);
+        ui::imshow("Image originale", orig);
+        ui::imshow(title, result);
 
-        waitKey(0);
+        ui::waitKey(0);
     }
 }
 

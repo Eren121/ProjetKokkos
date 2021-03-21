@@ -1,0 +1,22 @@
+#!/bin/bash
+# Télécharge et compile opencv, aucun pré-requis
+# utiliser g++ version <= 9 avec module load sinon pas compatible avec Kokkos
+
+# From https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html
+
+# Install minimal prerequisites (Ubuntu 18.04 as reference)
+#sudo apt update && sudo apt install -y cmake g++ wget unzip
+
+rm -rf opencv-build
+
+
+
+mkdir -p opencv-build
+cd opencv-build
+
+module load llvm # pour apparemment opencv en a besoin
+module load cmake
+module load gcc/8
+
+# Configure
+cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_INSTALL_PREFIX=$HOME/opencv-install -DCXX_STANDARD=17 ../opencv-master && make && make install

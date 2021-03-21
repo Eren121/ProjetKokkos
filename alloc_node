@@ -1,0 +1,6 @@
+#!/bin/bash
+# Charge un noeud avec GPU pour éxecuter
+# Avec 10 CPUs pour compiler plus vite... avec make -j10
+
+salloc --gres=gpu:4 -n 10 -N 1 --time=00:30:00
+squeue -u $USER

@@ -1,0 +1,33 @@
+#!/bin/bash
+# Compiler kokkos
+#srun --gres=gpu:1 -n 1 -N 1 -p instant --time=00:10:00 ./a.out
+
+#SBATCH --gres=gpu:1
+#SBATCH -n 8
+#SBATCH -N 1
+#SBATCH -p short
+#SBATCH --time=00:30:00
+
+module load git
+module load cmake
+module load cuda
+module load gcc/8
+
+git clone https://github.com/kokkos/kokkos
+
+rm -rf kokkos-build
+mkdir kokkos-build
+cd kokkos-build
+
+# Comme on liste tous les fichiers / dossiers,
+# certains dossiers peuvent être supprimés avant des fichiers à l'intérieur
+# option -f de rm pour ignorer l'erreur
+
+#cmake ../kokkos -DCMAKE_CXX_EXTENSIONS=On -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_COMPILER=nvcc_wrapper -DKokkos_ENABLE_OPENMP=On -DKokkos_ENABLE_CUDA=On && make && sudo make install
+cmake ../kokkos -DKokkos_ENABLE_CUDA_LAMBDA=ON \
+    -DCMAKE_INSTALL_PREFIX=$HOME/kokkos-install -DCMAKE_CXX_STANDARD=17 \
+    -DKokkos_ARCH_PASCAL60=ON -DCMAKE_CXX_COMPILER=g++ -DKokkos_ENABLE_OPENMP=On -DKokkos_ENABLE_CUDA=On && make && make install
+
+
+cd ..
+rm -rf kokkos-build

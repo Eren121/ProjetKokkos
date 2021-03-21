@@ -3,7 +3,7 @@
 
 #include "config.hpp"
 
-#define FILENAME "../data/test.jpeg"
+#define FILENAME "data/test.jpeg"
 #define DEF_K 30
 
 /// Simplifie la gestion de la mesure des performances:
@@ -29,12 +29,12 @@ public:
         smoothed_cpu = smoother_cpu.smooth(orig, k);
         smoothed_gpu = smoother_gpu.smooth(orig, k);
 
-        imshow("Originale", orig);
-        imshow(string(smoother_gpu.complete_name()), smoothed_gpu);
-        imshow(string(smoother_cpu.complete_name()), smoothed_cpu);
+        ui::imshow("Originale", orig);
+        ui::imshow(string(smoother_gpu.complete_name()), smoothed_gpu);
+        ui::imshow(string(smoother_cpu.complete_name()), smoothed_cpu);
+        ui::waitKey(0);
 
         cout << "difference " << smoother_gpu.name() << " = " << cv::norm(smoothed_gpu - smoothed_cpu) << endl;
-        waitKey(0);
     }
 
     // Mesure le temps d'une version
@@ -51,11 +51,11 @@ public:
 
         smoothed = smoother.smooth(orig, k);
 
-        imshow("Originale", orig);
-        imshow(string(smoother.name()), smoothed);
+        ui::imshow("Originale", orig);
+        ui::imshow(string(smoother.name()), smoothed);
+        ui::waitKey(0);
 
         cout << smoother.name() << ": " << timer.seconds() << "s." << endl;
-        waitKey(0);
     }
 };
 #endif
