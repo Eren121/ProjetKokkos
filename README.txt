@@ -1,5 +1,5 @@
 OpenCV a été utilisé malgré le fait que la version native ne fonctionne pas.
-Comme la version OpenCV ne fonctionne pas, il faut la compiler et l'installer.
+Comme la version native ne fonctionne pas, il faut la compiler et l'installer.
 
 ---------------------------------
 Etapes pour exécuter le programme
