@@ -3,8 +3,15 @@
 
 #include "config.hpp"
 
-#define FILENAME "data/test.jpeg"
-#define DEF_K 30
+// DEF_K car K est un peu trop général donc conflictuel comme nom; problèmes possibles
+
+#ifndef FILENAME
+    #define FILENAME "data/test.jpeg"
+#endif
+
+#ifndef DEF_K
+    #define DEF_K 30
+#endif
 
 /// Simplifie la gestion de la mesure des performances:
 /// sur gpu, cpu, et la comparaison entre les deux
